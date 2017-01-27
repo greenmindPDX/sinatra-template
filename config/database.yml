@@ -1,0 +1,18 @@
+development:
+ adapter: postgresql
+ encoding: unicode
+ database: development_mystore
+ host: localhost
+ username: postgres
+ password:
+ port: 5432
+
+test:
+ adapter: postgresql
+ encoding: unicode
+ database: test
+ pool: 5
+ host: localhost
+ username: postgres
+ password:
+ port: 5432
