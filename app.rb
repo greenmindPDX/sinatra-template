@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require './models/post'
-require 'sinatra/json'
-set :database, {adapter: 'postgresql', database: 'development'}
+require './app/models/order'
+#require 'sinatra/json'
+set :database, {adapter: 'postgresql', database: 'development_mystore'}
 mime_type :json, "application/json"
 before do
  content_type :json
@@ -22,11 +22,11 @@ helpers do
  end
 
  def get_page(page)
-  @starting_page = page.to_i — 1
+  @starting_page = page.to_i - 1
   @item_limit = 10
   @first_item = @starting_page * @item_limit
   @last_item = @first_item +  (@item_limit - 1)
-  @posts = Post.limit(10).offset(@first_item).order('id')
+  @posts = Order.limit(10).offset(@first_item).order('id')
   json @posts
  end
 
@@ -37,7 +37,12 @@ helpers do
  end
 end
 #Read
-get '/posts/?:page?' do
+get '/orders' do
+  @orders = Order.all
+  json @orders
+end
+
+get '/orders/?:page?' do
  get_page(params[:page])
 end
 #Search
@@ -45,7 +50,7 @@ get "/posts/search/:title" do
  search(params[:title])
 end
 #Create
-post "/posts" do
+post "/orders" do
  new_post = MultiJson.load(request.body.read)
  @post = Post.new( new_post )
  if @post.save
@@ -55,7 +60,7 @@ post "/posts" do
  end
 end
 #Update
-put "/posts/:id" do
+put "/orders/:id" do
  @post = Post.find_by_id params[:id]
  if !@post
  no_data!
