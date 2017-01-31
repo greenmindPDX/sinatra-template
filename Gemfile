@@ -7,7 +7,6 @@ gem 'activerecord-jdbcpostgresql-adapter'
 gem 'puma'
 gem 'rake'
 gem 'require_all'
-gem 'trinidad'
 
 group :development do
   gem 'shotgun'
