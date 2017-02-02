@@ -10,6 +10,7 @@ It is be a proof-of-concept for using Sinatra to create lightweight Ruby microse
 `jruby -S bundle install`
 
 ## FAQ ##
+
 Q. how to manage migrations?
 
 Run rake -T to see available tasks. Example is : rake db:create_migration NAME=create_orders
@@ -25,6 +26,7 @@ A. we need a helper to do that in app.rb
 Q. How do you start the server?
 
 A. `bundle exec jruby app.rb` and go to http://localhost:4567/orders. Or create a docker container
+
 ## Running with D0kker ##
 
 `docker build -t {imagename} .`
