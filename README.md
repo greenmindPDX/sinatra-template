@@ -3,7 +3,7 @@ The goal of this project is to create a simple Sinatra app that can run under Do
 
 It is be a proof-of-concept for using Sinatra to create lightweight Ruby microservices. Using JRuby to fit into the HSQ infrastructure.
 
-## To Install ##
+## To Install (local) ##
 
 `rvm install jruby-9.0.3.0`
 
@@ -26,6 +26,10 @@ A. we need a helper to do that in app.rb
 Q. How do you start the server?
 
 A. `bundle exec jruby app.rb` and go to http://localhost:4567/orders. Or create a docker container
+
+## TODO ##
+
+1. PostgreSQL is not tuned right now for production. 
 
 ## Running with D0kker ##
 
