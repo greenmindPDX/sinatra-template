@@ -2,12 +2,18 @@ version: '2'
 services:
   db:
     image: postgres:alpine
-  web:
+    environment:
+      - POSTGRES_USER=sinatra
+      - POSTGRES_PASSWORD=sinatra
+    ports:
+      - "5432:5432"
+  api:
     build: .
     command: jruby -S bundle exec jruby app.rb
     volumes:
       - .:/app
     ports:
       - "3000:3000"
-    depends_on:
+    links:
       - db
+      

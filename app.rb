@@ -1,8 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './app/models/order'
-#require 'sinatra/json'
-set :database, { adapter: 'postgresql', database: 'development_mystore' }
 set :bind, '0.0.0.0'
 mime_type :json, "application/json"
 before do

@@ -33,7 +33,7 @@ A. `bundle exec jruby app.rb` and go to http://localhost:4567/orders. Or create 
 
 ## Running with D0kker ##
 
-Building the containers: `docker-compose build`
+Building the containers: `docker-compose build .`
 
 Launching the containers: `docker-compose up`
 
@@ -44,11 +44,7 @@ Testing Ruby: `docker-compose run web jruby -S rake -T`
 
 Setting up/Seeding the DB:
 
-1. docker-compose run web jruby -S rake db:create
-
-2. docker-compose run web jruby -S rake db:migrate
-
-3. docker-compose run web jruby -S rake db:seed
+`docker-compose run api jruby -S rake db:create db:migrate db:seed`
 
 
 Once the container is running in the background, you should be able to cURL a sample endpoint
