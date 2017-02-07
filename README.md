@@ -29,15 +29,27 @@ A. `bundle exec jruby app.rb` and go to http://localhost:4567/orders. Or create 
 
 ## TODO ##
 
-1. PostgreSQL is not tuned right now for production. 
+1. PostgreSQL is not tuned right now for production.
 
 ## Running with D0kker ##
 
-`docker build -t {imagename} .`
+Building the containers: `docker-compose build`
 
-`docker run -d -p 7080:3000 {imagename}`
+Launching the containers: `docker-compose up`
 
-You can verify it's up with `docker ps` You will see a temporary name for that container.
+Verify a non-db related endpoint is available: `http://localhost:3000/sup`
+
+
+Testing Ruby: `docker-compose run web jruby -S rake -T`
+
+Setting up/Seeding the DB:
+
+1. docker-compose run web jruby -S rake db:create
+
+2. docker-compose run web jruby -S rake db:migrate
+
+3. docker-compose run web jruby -S rake db:seed
+
 
 Once the container is running in the background, you should be able to cURL a sample endpoint
 

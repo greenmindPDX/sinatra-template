@@ -1,19 +1,13 @@
-app:
-  # use the Dockerfile next to this file
-  build: .
-  dockerfile: Dockerfile
-
-  # sources environment variable configuration for our app
-  env_file: .env
-
-  # rely on the RAILS_ENV value of the host machine
-  environment:
-    RAILS_ENV: $RAILS_ENV
-
-  # makes the app container aware of the DB container
-  #links:
-  #  - db
-
-  # expose the port we configured Puma to bind to
-  ports:
-    - "443:443"
+version: '2'
+services:
+  db:
+    image: postgres:alpine
+  web:
+    build: .
+    command: jruby -S bundle exec jruby app.rb
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
