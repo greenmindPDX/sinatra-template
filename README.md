@@ -1,5 +1,5 @@
 ## Sinatra Store ##
-The goal of this project is to create a simple Sinatra app that can run under Docker with JRuby
+The goal of this project is to create a simple Sinatra app that can run under Docker with JRuby. The app connects to PostGres with activerecord-jdbc-adapter.
 
 It is be a proof-of-concept for using Sinatra to create lightweight Ruby microservices. Using JRuby to fit into the HSQ infrastructure.
 
@@ -13,7 +13,7 @@ It is be a proof-of-concept for using Sinatra to create lightweight Ruby microse
 
 Q. how to manage migrations?
 
-Run rake -T to see available tasks. Example is : rake db:create_migration NAME=create_orders
+Run rake -T to see available tasks. Example is: `rake db:create_migration NAME=create_orders`
 
 Q. what is tux?
 
@@ -27,9 +27,9 @@ Q. How do you start the server?
 
 A. `bundle exec jruby app.rb` and go to http://localhost:4567/orders. Or create a docker container
 
-## TODO ##
+## WARNING ##
 
-1. PostgreSQL is not tuned right now for production.
+1. You'll have binding problems if you are running postgres locally With Homebrew. On OSX, `brew services stop postgres`.
 
 ## Running with D0kker ##
 
@@ -39,18 +39,27 @@ Launching the containers: `docker-compose up`
 
 Verify a non-db related endpoint is available: `http://localhost:3000/sup`
 
-
-Testing Ruby: `docker-compose run web jruby -S rake -T`
+Testing Ruby: `docker-compose run api jruby -S rake -T`
 
 Setting up/Seeding the DB:
 
 `docker-compose run api jruby -S rake db:create db:migrate db:seed`
 
+Starting the app:
 
-Once the container is running in the background, you should be able to cURL a sample endpoint
+`docker-compose up`
 
-`curl http://0.0.0.0:7080/sup`
+Once the container is running in the background, you should be able to cURL a sample endpoint that fetches data.
+
+`curl http://localhost:3000/orders`
 
 
-Then to shut down the container, docker stop {container_name}
+## TODOs ##
+
+Add rspec tests with some sort of Factory
+
+Add cuke tests
+
 ## Deployment ##
+
+ merp

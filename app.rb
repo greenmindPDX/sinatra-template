@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './app/models/order'
 set :bind, '0.0.0.0'
+
 mime_type :json, "application/json"
 before do
  content_type :json
