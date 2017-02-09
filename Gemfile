@@ -6,6 +6,7 @@ gem 'sinatra-activerecord'
 gem 'activerecord-jdbcpostgresql-adapter'
 gem 'puma'
 gem 'require_all'
+gem 'rspec'
 
 group :development do
   gem 'shotgun'
