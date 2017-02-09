@@ -55,7 +55,6 @@ Once the container is running in the background, you should be able to cURL a sa
 
 `curl http://localhost:3000/orders`
 
-
 ## TODOs ##
 
 Add rspec tests with some sort of Factory
@@ -63,9 +62,9 @@ Add rspec tests with some sort of Factory
 Add cuke tests
 
 ## TESTING (so far) ##
-Spin up an instance with bash, then `ENV=test jruby -S rake db:setup.`
+Spin up an instance with bash, then `ENV=test jruby -S rake db:setup`
 
-`jruby -S `
+Then run the test suite with `docker-compose run -e 'ENV=test' api jruby -S rspec spec/`
 
 ## Deployment ##
 
