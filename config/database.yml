@@ -1,12 +1,17 @@
-development: &default
+development: &development
   adapter: jdbcpostgresql
   encoding: unicode
-  database: mystore_development
   pool: 5
+  database: mystore_development
+  host: db
   username: postgres
   password: sinatra
-  host: db
 
-test: &development
+test: &test
   adapter: jdbcpostgresql
+  encoding: unicode
+  pool: 5
+  database: mystore_test
   host: db
+  username: postgres
+  password: sinatra

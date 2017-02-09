@@ -5,11 +5,12 @@ MAINTAINER HealthSparqOne Team <DL-HSOne@regence.com>
 # Install latest Ruby and Gem dependencies
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 RUN apk update
-RUN apk add bash curl tar
+RUN apk add bash curl tar nano
 RUN apk add gcc gnupg procps musl-dev make linux-headers \
         zlib zlib-dev openssl openssl-dev libssl1.0
 
 # Install and run jruby and bundler
+RUN apk update
 RUN apk add jruby jruby-rake
 RUN jruby -S gem install bundler
 

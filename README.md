@@ -9,6 +9,8 @@ It is be a proof-of-concept for using Sinatra to create lightweight Ruby microse
 
 `jruby -S bundle install`
 
+** NOTE: all jruby commands are used with `-S` to use $PATH **
+
 ## FAQ ##
 
 Q. how to manage migrations?
@@ -59,6 +61,11 @@ Once the container is running in the background, you should be able to cURL a sa
 Add rspec tests with some sort of Factory
 
 Add cuke tests
+
+## TESTING (so far) ##
+Spin up an instance with bash, then `ENV=test jruby -S rake db:setup.`
+
+`jruby -S `
 
 ## Deployment ##
 
