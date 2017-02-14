@@ -7,6 +7,10 @@ gem 'activerecord-jdbcpostgresql-adapter'
 gem 'puma'
 gem 'require_all'
 gem 'rspec'
+gem 'database_cleaner'
+gem 'cucumber'
+gem 'cucumber-sinatra'
+gem 'rack-test'
 
 group :development do
   gem 'shotgun'

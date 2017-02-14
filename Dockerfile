@@ -11,7 +11,7 @@ RUN apk add gcc gnupg procps musl-dev make linux-headers \
 
 # Install and run jruby and bundler
 RUN apk update
-RUN apk add jruby jruby-rake
+RUN apk add jruby jruby-rake jruby-readline
 RUN jruby -S gem install bundler
 
 ENV APP_HOME /app
