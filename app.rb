@@ -36,59 +36,60 @@ helpers do
     json @post
   end
 end
+class StoreApp < Sinatra::Base
+  get '/' do
+    'Welcome to the Store!'
+  end
 
-get '/' do
-  json 'Welcome to this application!'
-end
+  get '/sup' do
+    myhash = {kid1: 'Isaac', kid2: 'Eli'}
+    json myhash
+  end
 
-get '/sup' do
-  myhash = {kid1: 'Isaac', kid2: 'Eli'}
-  json myhash
-end
+  #Read
+  get '/orders' do
+    @orders = Order.all
+    json @orders
+  end
 
-#Read
-get '/orders' do
-  @orders = Order.all
-  json @orders
-end
-
-get '/orders/?:page?' do
-  get_page(params[:page])
-end
-#Search
-get "/posts/search/:title" do
-  search(params[:title])
-end
-#Create
-post "/orders" do
-  new_post = MultiJson.load(request.body.read)
-   @post = Post.new( new_post )
-   if @post.save
-     json @post
-   else
-     no_data!
-   end
-end
-#Update
-put "/orders/:id" do
-  @post = Post.find_by_id params[:id]
-  if !@post
-    no_data!
-  else
-    update_post = MultiJson.load request.body.read
-    if @post.update_attributes(update_post)
-      json @post
+  get '/orders/?:page?' do
+    get_page(params[:page])
+  end
+  #Search
+  get "/posts/search/:title" do
+    search(params[:title])
+  end
+  #Create
+  post "/orders" do
+    new_post = MultiJson.load(request.body.read)
+     @post = Post.new( new_post )
+     if @post.save
+       json @post
+     else
+       no_data!
+     end
+  end
+  #Update
+  put "/orders/:id" do
+    @post = Post.find_by_id params[:id]
+    if !@post
+      no_data!
     else
-      json @post.errors.messages
+      update_post = MultiJson.load request.body.read
+      if @post.update_attributes(update_post)
+        json @post
+      else
+        json @post.errors.messages
+      end
     end
   end
-end
-#Delete
-delete "/posts/delete/:id" do
-  @post = Post.find_by_id params[:id]
-  if !@post
-    no_data!
-  else
-    @post.destroy
+  #Delete
+  delete "/posts/delete/:id" do
+    @post = Post.find_by_id params[:id]
+    if !@post
+      no_data!
+    else
+      @post.destroy
+    end
   end
 end
