@@ -33,6 +33,10 @@ Once the container is running in the background, you should be able to cURL a sa
 
 `curl http://localhost:3000/orders`
 
+Running Tests:
+
+`docker-compose run api jruby -S rspec`
+
 ## FAQ ##
 
 Q. how to manage migrations?
