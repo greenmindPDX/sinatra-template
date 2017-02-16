@@ -15,8 +15,7 @@ Then(/^the response should be "([^\"]*)"$/) do |status|
 end
 
 Then( /^the JSON response should be an array with (\d+) "([^\"]*)" elements$/ )do |number_of_children, type_name|
-  page = JSON.parse(last_response.body)
-  data = page["data"]
+  data = JSON.parse(last_response.body)
   raise "response did not contain data" if data.blank?
-  expect( data.select { |d| d["type"] == type_name.pluralize }.length ).to eq number_of_children.to_i
+  expect( data.length ).to eq number_of_children.to_i
 end
