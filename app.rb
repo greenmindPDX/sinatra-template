@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require './app/models/order'
+require './lib/models/order'
 set :bind, '0.0.0.0'
 
 mime_type :json, "application/json"
@@ -36,9 +36,14 @@ helpers do
     json @post
   end
 end
-class StoreApp < Sinatra::Base
+
+class StoreApp < Sinatra::Application
   get '/' do
     'Welcome to the Store!'
+  end
+
+  get '/hello' do
+    'hello world'
   end
 
   get '/sup' do

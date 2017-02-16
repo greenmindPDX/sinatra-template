@@ -9,9 +9,9 @@ services:
       - "5433:5432"
   api:
     build: .
-    command: jruby -S bundle exec jruby app.rb
+    command: jruby -S bundle exec rackup
     volumes:
-      - .:/app
+      - .:/lib
     ports:
       - "3000:3000"
     links:

@@ -30,4 +30,4 @@ EXPOSE 3000
 # Start the application
 # TODO add rake stuff
 
-# CMD jruby -S bundle exec jruby app.rb
+# CMD jruby -S bundle exec jruby rackup

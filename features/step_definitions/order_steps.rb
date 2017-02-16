@@ -1,7 +1,7 @@
 ENV['RACK_ENV'] = 'test'
 require 'sinatra'
 require 'sinatra/activerecord'
-require_relative '../../app/models/order'
+require_relative '../../lib/models/order'
 
 Given(/^the orders:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
