@@ -18,16 +18,10 @@ ENV APP_HOME /app
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 RUN cd $APP_HOME
-COPY Gemfile* $APP_HOME/
-RUN jruby -S bundle install
-
 # Copy the Sinatra application into place
 COPY . $APP_HOME
+RUN jruby -S bundle install
+
 
 ENV PORT 3000
 EXPOSE 3000
-
-# Start the application
-# TODO add rake stuff
-
-# CMD jruby -S bundle exec jruby rackup

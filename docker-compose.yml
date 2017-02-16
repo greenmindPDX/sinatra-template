@@ -6,12 +6,12 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=sinatra
     ports:
-      - "5433:5432"
+      - "5432:5432"
   api:
     build: .
-    command: jruby -S bundle exec rackup
+    command: jruby -S rackup -p 3000
     volumes:
-      - .:/lib
+      - .:/app
     ports:
       - "3000:3000"
     links:
