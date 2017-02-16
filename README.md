@@ -25,17 +25,13 @@ Setting up/Seeding the DB:
 
 `docker-compose run api jruby -S rake db:create db:migrate db:seed`
 
-Starting the app:
+Re-start the app:
 
 `docker-compose up`
 
 Once the container is running in the background, you should be able to cURL a sample endpoint that fetches data.
 
 `curl http://localhost:3000/orders`
-
-Running Tests:
-
-`docker-compose run api jruby -S rspec`
 
 ## FAQ ##
 
@@ -69,16 +65,18 @@ A. Start it in Docker.
 
 Q. Why doesn't [fill in your favorite Rails thing] work?
 
-A. Sinatra is extremely lightweight. Routing is done through app.rb. Mostly autoloading doesn't work as expected, so you have to do a lot of `require_relative.` We are also a little limited because of some of JRuby's oddness
+A. Sinatra is extremely lightweight. Routing is done through app.rb. Mostly autoloading doesn't work as expected, so you have to do a lot of `require_relative.` We are also a little limited because of some of JRuby's oddness.
 
 ## TODOs ##
 
-Add cuke tests
+Make cukes run to match HSQ deployment
 
 ## TESTING (so far) ##
-Spin up an instance with bash, then `docker-compose run -e 'ENV=test' jruby -S rake db:setup`
+Spin up a container, then `docker-compose run -e 'ENV=test' jruby -S rake db:setup`
 
-Then run the test suite with `docker-compose run -e 'ENV=test' api jruby -S rspec spec/`
+Then run the test suite:
+1. `docker-compose run -e 'ENV=test' api jruby -S rspec`
+2. `docker-compose run -e 'ENV=test' api jruby -S cucumber`
 
 ## Troubleshooting ##
 
