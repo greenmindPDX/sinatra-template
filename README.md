@@ -55,3 +55,5 @@ A. Start it in Docker.
 Q. Why doesn't [fill in your favorite Rails thing] work?
 
 A. Sinatra is extremely lightweight. Routing is done through app.rb. Mostly autoloading doesn't work as expected, so you have to do a lot of `require_relative.` Also, JRuby oddnesses.es.
+
+
