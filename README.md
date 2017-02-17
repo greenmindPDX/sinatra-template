@@ -1,13 +1,18 @@
-## Sinatra Store ##
-The goal of this project is to create a simple Sinatra app that can run under Docker with JRuby. The app connects to PostGres with activerecord-jdbc-adapter. In docker-compose, Jruby/Sinatra container gets built first, then the PostGreSQL container.
+## Sinatra Jruby Template ##
 
-It is be a proof-of-concept for using Sinatra to create lightweight Ruby microservices. Using JRuby to fit into the HSQ infrastructure. Mostly this is meant to run with Docker containers.
+this is a template app for using Sinatra to create lightweight Ruby microservices. Using JRuby. Mostly this is meant to run with Docker containers. The Sinatra part because you really don't need Rails to run a simple JSON api, and JRuby
+because sometimes you work for weird folks. Not judging.
+
+Also, I wouldn't ever really write Cucumber tests in this manner, since they are overly technical and not for PMs,
+but there you have it.
 
 ## To Install (local) ##
 
 `rvm install jruby-9.0.3.0`
 
 `jruby -S bundle install`
+
+`rackup`
 
 ** NOTE: all jruby commands are used with `-S` to use $PATH **
 
@@ -16,22 +21,6 @@ It is be a proof-of-concept for using Sinatra to create lightweight Ruby microse
 Build the containers: `docker-compose build`
 
 Launch the containers: `docker-compose up`
-
-Verify a non-db related endpoint is available: `http://localhost:3000/sup`
-
-Testing Ruby: `docker-compose run api jruby -S rake -T`
-
-Setting up/Seeding the DB:
-
-`docker-compose run api jruby -S rake db:create db:migrate db:seed`
-
-Re-start the app:
-
-`docker-compose up`
-
-Once the container is running in the background, you should be able to cURL a sample endpoint that fetches data.
-
-`curl http://localhost:3000/orders`
 
 ## FAQ ##
 
@@ -65,26 +54,4 @@ A. Start it in Docker.
 
 Q. Why doesn't [fill in your favorite Rails thing] work?
 
-A. Sinatra is extremely lightweight. Routing is done through app.rb. Mostly autoloading doesn't work as expected, so you have to do a lot of `require_relative.` We are also a little limited because of some of JRuby's oddness.
-
-## TODOs ##
-
-Make cukes run to match HSQ deployment
-
-## TESTING (so far) ##
-Spin up a container, then `docker-compose run -e 'ENV=test' jruby -S rake db:setup`
-
-Then run the test suite:
-1. `docker-compose run -e 'ENV=test' api jruby -S rspec`
-2. `docker-compose run -e 'ENV=test' api jruby -S cucumber`
-
-## Troubleshooting ##
-
-1. If you need to attach to the api container, `docker-compose run api bash.`
-
-2. You might have binding problems if you are running postgres locally With Homebrew. On OSX, `brew services stop postgres`.
-
-
-## Deployment ##
-
- merp
+A. Sinatra is extremely lightweight. Routing is done through app.rb. Mostly autoloading doesn't work as expected, so you have to do a lot of `require_relative.` Also, JRuby oddnesses.es.

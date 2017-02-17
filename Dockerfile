@@ -1,6 +1,5 @@
 # Start with our lightweight Alpine linux image + Oracle's JRE
-FROM pdxdan/hsq-alpine-java:8_92
-MAINTAINER HealthSparqOne Team <DL-HSOne@regence.com>
+FROM gliderlabs/alpine:latest
 
 # Install latest Ruby and Gem dependencies
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
@@ -21,7 +20,6 @@ RUN cd $APP_HOME
 # Copy the Sinatra application into place
 COPY . $APP_HOME
 RUN jruby -S bundle install
-
 
 ENV PORT 3000
 EXPOSE 3000

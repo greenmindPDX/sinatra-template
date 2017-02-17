@@ -7,6 +7,7 @@ mime_type :json, "application/json"
 before do
  content_type :json
 end
+
 helpers do
   def json( dataset )
     if !dataset #.empty?
@@ -37,64 +38,14 @@ helpers do
   end
 end
 
-class StoreApp < Sinatra::Application
+class SampleApp < Sinatra::Application
   get '/' do
-    'Welcome to the Store!'
-  end
-
-  get '/hello' do
-    'hello world'
-  end
-
-  get '/sup' do
-    myhash = {kid1: 'Isaac', kid2: 'Eli'}
-    json myhash
+    'Welcome to the my Sample Application!'
   end
 
   #Read
   get '/orders' do
     @orders = Order.all
     json @orders
-  end
-
-  get '/orders/?:page?' do
-    get_page(params[:page])
-  end
-  #Search
-  get "/posts/search/:title" do
-    search(params[:title])
-  end
-  #Create
-  post "/orders" do
-    new_post = MultiJson.load(request.body.read)
-     @post = Post.new( new_post )
-     if @post.save
-       json @post
-     else
-       no_data!
-     end
-  end
-  #Update
-  put "/orders/:id" do
-    @post = Post.find_by_id params[:id]
-    if !@post
-      no_data!
-    else
-      update_post = MultiJson.load request.body.read
-      if @post.update_attributes(update_post)
-        json @post
-      else
-        json @post.errors.messages
-      end
-    end
-  end
-  #Delete
-  delete "/posts/delete/:id" do
-    @post = Post.find_by_id params[:id]
-    if !@post
-      no_data!
-    else
-      @post.destroy
-    end
   end
 end

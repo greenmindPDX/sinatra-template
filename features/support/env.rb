@@ -10,8 +10,6 @@ ActiveRecord::Base.connection.tables.each do |table|
   ActiveRecord::Base.connection.execute("DELETE FROM #{table}")
 end
 
-
-
 module TestStoreApp
   def app
     StoreApp.new
